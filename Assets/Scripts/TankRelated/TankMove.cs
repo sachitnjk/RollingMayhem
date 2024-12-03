@@ -26,13 +26,21 @@ public class TankMove : MonoBehaviour
 
     private void Update()
     {
-        if (moveAction != null)
-        {
-            MoveTank();
-        }
+        // if (moveAction != null)
+        // {
+        //     MoveTank();
+        // }
         if (turnAction != null)
         {
             TurnTurret();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (moveAction != null)
+        {
+            MoveTank();
         }
     }
 
