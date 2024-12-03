@@ -1,18 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputProvider : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static PlayerInput _playerInput;
+
+    private void Awake()
     {
-        
+        if (_playerInput == null)
+        {
+            _playerInput = GetComponent<PlayerInput>();
+        }
+        else
+            Destroy(this.gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    public static PlayerInput GetPlayerInput()
     {
-        
+        if (_playerInput == null)
+        {
+            Debug.LogError("Player input not set, either not on scene or component not available on game object.");
+        }
+        return _playerInput;
     }
 }
