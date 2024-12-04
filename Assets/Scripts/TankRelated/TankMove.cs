@@ -13,18 +13,18 @@ public class TankMove : MonoBehaviour
 
     private Vector2 moveInput;
     private float turnInput;
-
-    private bool isMoving = false;
+    
     private bool isTurning = false;
+    private float currentMoveSpeed = 0f;
         
     [Header("Tank References")]
     [SerializeField] private Rigidbody tankRB;
     
-    [FormerlySerializedAs("moveSpeed")]
     [Header("Tank Attributes")]
-    [SerializeField] private float currentMoveSpeed;
     [Range(1f, 10f)]
     [SerializeField] private float maxSpeed = 10f;
+    [SerializeField] private float acceleration = 5f;
+    [SerializeField] private float deceleration = 8f;
     private void Start()
     {
         Initialize();
@@ -32,10 +32,6 @@ public class TankMove : MonoBehaviour
 
     private void Update()
     {
-        // if (moveAction != null)
-        // {
-        //     MoveTank();
-        // }
         if (turnAction != null)
         {
             TurnTurret();
@@ -59,77 +55,25 @@ public class TankMove : MonoBehaviour
             moveAction = playerInput.actions["Movement"];
             turnAction = playerInput.actions["TurretRotation"];
         }
-
-        currentMoveSpeed = 0f;
     }
     
     private void MoveTank()
     {
         moveInput = moveAction.ReadValue<Vector2>();
-        currentMoveSpeed = Mathf.Clamp(currentMoveSpeed, 0f, maxSpeed);
 
-        if (GetMovingStatus())
+        if (moveInput.y != 0)
         {
-            HandleAccelerateDecelerateOnMove();
-        }
-        else if(!moveAction.IsPressed())
-        {
-            HandleDeccelerate();
-        }
-        else if (!isMoving && moveAction.IsPressed())
-        {
-            currentMoveSpeed++;
-            isMoving = true;
-        }
-
-        if (moveInput != null)
-        {
-            Vector3 forwardMovement = transform.forward * moveInput.y * currentMoveSpeed * Time.fixedDeltaTime;
-            
-            tankRB.MovePosition(tankRB.position + forwardMovement);
-        }
-    }
-
-    private void HandleAccelerateDecelerateOnMove()
-    {
-        
-        if (moveAction.IsPressed())
-        {
-            if (currentMoveSpeed < maxSpeed)
-            {
-                currentMoveSpeed++;
-            }
-        }
-        else if(!moveAction.IsPressed())
-        {
-            if (currentMoveSpeed > 0f)
-            {
-                currentMoveSpeed--;
-            }
-        }
-    }
-
-    private void HandleDeccelerate()
-    {
-        if (currentMoveSpeed > 0f)
-        {
-            currentMoveSpeed--;
-        }
-    }
-
-    private bool GetMovingStatus()
-    {
-        if (tankRB.velocity.magnitude > 0.1f)
-        {
-            isMoving = true;
+            currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, moveInput.y * maxSpeed, acceleration * Time.deltaTime);
         }
         else
         {
-            isMoving = false;
+            currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, 0f, deceleration * Time.deltaTime);
         }
-        return isMoving;
-    }
 
+        Vector3 forwardMovement = transform.forward * currentMoveSpeed * Time.deltaTime;
+        tankRB.MovePosition(transform.position + forwardMovement);
+    }
+    
     private void TurnTurret()
     {
         turnInput = turnAction.ReadValue<float>();
