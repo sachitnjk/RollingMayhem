@@ -19,12 +19,7 @@ public class TankMove : MonoBehaviour
         
     [Header("Tank References")]
     [SerializeField] private Rigidbody tankRB;
-    
-    [Header("Tank Attributes")]
-    [Range(1f, 10f)]
-    [SerializeField] private float maxSpeed = 10f;
-    [SerializeField] private float acceleration = 5f;
-    [SerializeField] private float deceleration = 8f;
+    [SerializeField] private TankBaseSO tankBaseSO;
     private void Start()
     {
         Initialize();
@@ -63,11 +58,11 @@ public class TankMove : MonoBehaviour
 
         if (moveInput.y != 0)
         {
-            currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, moveInput.y * maxSpeed, acceleration * Time.deltaTime);
+            currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, moveInput.y * tankBaseSO.maxSpeed, tankBaseSO.acceleration * Time.deltaTime);
         }
         else
         {
-            currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, 0f, deceleration * Time.deltaTime);
+            currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, 0f, tankBaseSO.decceleration * Time.deltaTime);
         }
 
         Vector3 forwardMovement = transform.forward * currentMoveSpeed * Time.deltaTime;
