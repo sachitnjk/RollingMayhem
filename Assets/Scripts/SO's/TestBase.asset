@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3996bb90a26015848b772a7caca855da, type: 3}
   m_Name: TestBase
   m_EditorClassIdentifier: 
-  maxSpeed: 10
-  acceleration: 5
-  decceleration: 10
+  breakthroughSpeed: 100
+  maxSpeed: 200
+  acceleration: 80
+  decceleration: 150
+  tiltMultiplier: 2

@@ -15,7 +15,7 @@ public class TankMove : MonoBehaviour
     private float turnInput;
     
     private bool isTurning = false;
-    private float currentMoveSpeed = 0f;
+    [SerializeField] private float currentMoveSpeed = 0f;
         
     [Header("Tank References")]
     [SerializeField] private Rigidbody tankRB;
@@ -27,9 +27,9 @@ public class TankMove : MonoBehaviour
 
     private void Update()
     {
-        if (turnAction != null)
+        if (moveInput.y == 0 && tankRB.velocity.magnitude < 0.1f)
         {
-            TurnTurret();
+            currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, 0f, tankBaseSO.decceleration * Time.deltaTime);
         }
     }
 
@@ -37,7 +37,7 @@ public class TankMove : MonoBehaviour
     {
         if (moveAction != null)
         {
-            MoveTank();
+            MoveTankPhysics();
         }
     }
 
@@ -51,22 +51,36 @@ public class TankMove : MonoBehaviour
             turnAction = playerInput.actions["TurretRotation"];
         }
     }
+
+    private void MoveTankNonPhysics()
+    {
+        if (moveAction != null)
+        {
+            moveInput = moveAction.ReadValue<Vector2>();
+        }
+    }
     
-    private void MoveTank()
+    private void MoveTankPhysics()
     {
         moveInput = moveAction.ReadValue<Vector2>();
-
+        
         if (moveInput.y != 0)
         {
-            currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, moveInput.y * tankBaseSO.maxSpeed, tankBaseSO.acceleration * Time.deltaTime);
+            
+            if (Mathf.Sign(moveInput.y) != Mathf.Sign(currentMoveSpeed) && Mathf.Abs(currentMoveSpeed) > 0.1f)
+            {
+                // Instantly change the direction and apply initial speed
+                currentMoveSpeed = moveInput.y * tankBaseSO.breakthroughSpeed; // Optional breakthrough speed for instant direction change
+            }
+            else
+            {
+                // Smooth acceleration within the same direction
+                currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, moveInput.y * tankBaseSO.maxSpeed, tankBaseSO.acceleration * Time.deltaTime);
+            }
+            
+            Vector3 forwardMovement = transform.forward * currentMoveSpeed * Time.deltaTime;
+            tankRB.velocity = forwardMovement;
         }
-        else
-        {
-            currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, 0f, tankBaseSO.decceleration * Time.deltaTime);
-        }
-
-        Vector3 forwardMovement = transform.forward * currentMoveSpeed * Time.deltaTime;
-        tankRB.MovePosition(transform.position + forwardMovement);
     }
     
     private void TurnTurret()
@@ -78,4 +92,5 @@ public class TankMove : MonoBehaviour
             
         }
     }
+    
 }

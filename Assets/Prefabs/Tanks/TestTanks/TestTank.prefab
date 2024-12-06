@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankRB: {fileID: 9102301686888221952}
-  moveSpeed: 5
+  tankBaseSO: {fileID: 11400000, guid: b6ba6952ca760be46b90d7c990e97ec1, type: 2}
 --- !u!65 &5427759761315610524
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68,8 +68,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.2123497, y: 0.71305305, z: 2.0212889}
-  m_Center: {x: 0, y: 0.35419968, z: 0}
+  m_Size: {x: 1.2123497, y: 0.76373315, z: 2.0212889}
+  m_Center: {x: 0, y: 0.32885963, z: 0}
 --- !u!54 &9102301686888221952
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -111,7 +111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1275134194442784590, guid: f372208374afc5e4a90166a26a249058, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1275134194442784590, guid: f372208374afc5e4a90166a26a249058, type: 3}
       propertyPath: m_LocalPosition.z
