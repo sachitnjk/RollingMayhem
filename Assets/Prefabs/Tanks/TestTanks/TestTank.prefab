@@ -47,8 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e986f323d1795534fb5cc9dd75fdfa77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentMoveSpeed: 0
   tankRB: {fileID: 9102301686888221952}
   tankBaseSO: {fileID: 11400000, guid: b6ba6952ca760be46b90d7c990e97ec1, type: 2}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  maxDistanceToCheckForGround: 0.2
 --- !u!65 &5427759761315610524
 BoxCollider:
   m_ObjectHideFlags: 0

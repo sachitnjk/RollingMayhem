@@ -14,12 +14,18 @@ public class TankMove : MonoBehaviour
     private Vector2 moveInput;
     private float turnInput;
     
-    private bool isTurning = false;
+    //--Serialized for debug
+    [Header("Debug Serialized fields")]
     [SerializeField] private float currentMoveSpeed = 0f;
+    //--
+    private bool isTurning = false;
+    private bool isGrounded;
         
     [Header("Tank References")]
     [SerializeField] private Rigidbody tankRB;
     [SerializeField] private TankBaseSO tankBaseSO;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float maxDistanceToCheckForGround = 0.2f;
     private void Start()
     {
         Initialize();
@@ -35,7 +41,7 @@ public class TankMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (moveAction != null)
+        if (moveAction != null && IsTankGrounded())
         {
             MoveTankPhysics();
         }
@@ -92,5 +98,11 @@ public class TankMove : MonoBehaviour
             
         }
     }
-    
+
+    private bool IsTankGrounded()
+    {
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, maxDistanceToCheckForGround, groundLayer);
+        return isGrounded;
+    }
+
 }

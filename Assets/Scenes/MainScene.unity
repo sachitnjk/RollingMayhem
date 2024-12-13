@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 238512265}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Environment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,6 +169,10 @@ PrefabInstance:
     - target: {fileID: 5709875526163169121, guid: 8ae052bd8dd683b4ebc439aaabfe3c1d, type: 3}
       propertyPath: m_Name
       value: PlaneGround
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709875526163169121, guid: 8ae052bd8dd683b4ebc439aaabfe3c1d, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8221050615947535382, guid: 8ae052bd8dd683b4ebc439aaabfe3c1d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -284,8 +288,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 495989740}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.04696892, y: 1e-45, z: -0, w: 0.99889636}
-  m_LocalPosition: {x: 0, y: 2.7, z: -8}
+  m_LocalRotation: {x: 0.04696891, y: -1.7724359e-15, z: -5.5177473e-17, w: 0.99889636}
+  m_LocalPosition: {x: 0, y: 3.484, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -601,8 +605,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 873794750}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.04696892, y: 1e-45, z: 0, w: 0.99889636}
-  m_LocalPosition: {x: 0, y: 2.7, z: -8}
+  m_LocalRotation: {x: 0.04696891, y: -1.7724359e-15, z: -5.5177473e-17, w: 0.99889636}
+  m_LocalPosition: {x: 0, y: 3.484, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -620,7 +624,7 @@ GameObject:
   - component: {fileID: 905507257}
   - component: {fileID: 905507256}
   - component: {fileID: 905507255}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -725,7 +729,7 @@ GameObject:
   - component: {fileID: 989359797}
   - component: {fileID: 989359796}
   - component: {fileID: 989359795}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -862,7 +866,7 @@ GameObject:
   - component: {fileID: 1309601983}
   - component: {fileID: 1309601982}
   - component: {fileID: 1309601981}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -973,7 +977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1714130196010574203, guid: a90975ec0f890fd4faaa5b43868c334d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.784
       objectReference: {fileID: 0}
     - target: {fileID: 1714130196010574203, guid: a90975ec0f890fd4faaa5b43868c334d, type: 3}
       propertyPath: m_LocalPosition.z
